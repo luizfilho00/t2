@@ -1,0 +1,996 @@
+
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 300  Bytes(Size of Packet)
+   |-Identification    : 22561
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58280
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842608256
+   |-Acknowledge Number : 4001837387
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65312
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 01 2C 58 21 40 00 40 06 E3 A8 7F 00 00 01         E..,X!@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C2 80 EE 87 31 4B 80 18 18 1B         ..%..n.€..1K€...
+    FF 20 00 00 01 01 08 0A 8B 1C FE 83 8B 1C FA 9B         . ..............
+Data Payload
+    47 45 54 20 2F 73 79 6E 63 20 48 54 54 50 2F 31         GET /sync HTTP/1
+    2E 31 0D 0A 48 6F 73 74 3A 20 31 32 37 2E 30 2E         .1..Host: 127.0.
+    30 2E 31 3A 39 36 31 34 0D 0A 55 73 65 72 2D 41         0.1:9614..User-A
+    67 65 6E 74 3A 20 4D 6F 7A 69 6C 6C 61 2F 35 2E         gent: Mozilla/5.
+    30 20 28 58 31 31 3B 20 55 62 75 6E 74 75 3B 20         0 (X11; Ubuntu; 
+    4C 69 6E 75 78 20 78 38 36 5F 36 34 3B 20 72 76         Linux x86_64; rv
+    3A 36 32 2E 30 29 20 47 65 63 6B 6F 2F 32 30 31         :62.0) Gecko/201
+    30 30 31 30 31 20 46 69 72 65 66 6F 78 2F 36 32         00101 Firefox/62
+    2E 30 0D 0A 41 63 63 65 70 74 3A 20 2A 2F 2A 0D         .0..Accept: */*.
+    0A 41 63 63 65 70 74 2D 4C 61 6E 67 75 61 67 65         .Accept-Language
+    3A 20 70 74 2D 42 52 2C 65 6E 2D 55 53 3B 71 3D         : pt-BR,en-US;q=
+    30 2E 37 2C 65 6E 3B 71 3D 30 2E 33 0D 0A 41 63         0.7,en;q=0.3..Ac
+    63 65 70 74 2D 45 6E 63 6F 64 69 6E 67 3A 20 67         cept-Encoding: g
+    7A 69 70 2C 20 64 65 66 6C 61 74 65 0D 0A 43 6F         zip, deflate..Co
+    6E 6E 65 63 74 69 6F 6E 3A 20 6B 65 65 70 2D 61         nnection: keep-a
+    6C 69 76 65 0D 0A 0D 0A                                 live....
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 227  Bytes(Size of Packet)
+   |-Identification    : 26314
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 54600
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 9614
+   |-Destination Port : 58384
+   |-Sequence Number    : 4001837387
+   |-Acknowledge Number : 2842608504
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6158
+   |-Checksum       : 65239
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 E3 66 CA 40 00 40 06 D5 48 7F 00 00 01         E...f.@.@..H...
+    7F 00 00 01                                             ...
+TCP Header
+    25 8E E4 10 EE 87 31 4B A9 6E C3 78 80 18 18 0E         %.....1K.n.x€...
+    FE D7 00 00 01 01 08 0A 8B 1C FE 84 8B 1C FE 83         ................
+Data Payload
+    48 54 54 50 2F 31 2E 31 20 32 30 30 20 4F 4B 0D         HTTP/1.1 200 OK.
+    0A 43 6F 6E 74 65 6E 74 2D 4C 65 6E 67 74 68 3A         .Content-Length:
+    20 34 35 32 0D 0A 43 6F 6E 74 65 6E 74 2D 54 79          452..Content-Ty
+    70 65 3A 20 61 70 70 6C 69 63 61 74 69 6F 6E 2F         pe: application/
+    6A 73 6F 6E 0D 0A 43 61 63 68 65 2D 43 6F 6E 74         json..Cache-Cont
+    72 6F 6C 3A 20 6E 6F 2D 63 61 63 68 65 2C 20 6E         rol: no-cache, n
+    6F 2D 73 74 6F 72 65 2C 20 6D 75 73 74 2D 72 65         o-store, must-re
+    76 61 6C 69 64 61 74 65 0D 0A 50 72 61 67 6D 61         validate..Pragma
+    3A 20 6E 6F 2D 63 61 63 68 65 0D 0A 45 78 70 69         : no-cache..Expi
+    72 65 73 3A 20 30 0D 0A 43 6F 6E 74 65 6E 74 2D         res: 0..Content-
+    4C 65 6E 67 74 68 3A 20 34 35 32 0D 0A 0D 0A            Length: 452....
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 52  Bytes(Size of Packet)
+   |-Identification    : 22562
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58527
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842608504
+   |-Acknowledge Number : 4001837562
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 0
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65064
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 34 58 22 40 00 40 06 E4 9F 7F 00 00 01         E..4X"@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C3 78 EE 87 31 FA 80 10 18 1B         ..%..n.x..1.€...
+    FE 28 00 00 01 01 08 0A 8B 1C FE 84 8B 1C FE 84         .(..............
+Data Payload
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 504  Bytes(Size of Packet)
+   |-Identification    : 26315
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 54322
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 9614
+   |-Destination Port : 58384
+   |-Sequence Number    : 4001837562
+   |-Acknowledge Number : 2842608504
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6158
+   |-Checksum       : 65516
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 01 F8 66 CB 40 00 40 06 D4 32 7F 00 00 01         E...f.@.@..2...
+    7F 00 00 01                                             ...
+TCP Header
+    25 8E E4 10 EE 87 31 FA A9 6E C3 78 80 18 18 0E         %.....1..n.x€...
+    FF EC 00 00 01 01 08 0A 8B 1C FE 84 8B 1C FE 84         ................
+Data Payload
+    7B 0A 22 65 6E 61 62 6C 65 64 22 3A 20 74 72 75         {."enabled": tru
+    65 2C 0A 22 62 6C 6F 63 6B 65 64 48 6F 73 74 73         e,."blockedHosts
+    22 3A 20 5B 22 75 70 64 61 74 65 2E 6D 69 63 72         ": ["update.micr
+    6F 73 6F 66 74 2E 63 6F 6D 22 2C 22 77 69 6E 64         osoft.com","wind
+    6F 77 73 75 70 64 61 74 65 2E 63 6F 6D 22 2C 22         owsupdate.com","
+    74 68 77 61 77 74 65 2E 63 6F 6D 22 2C 22 6F 76         thwawte.com","ov
+    65 72 6C 65 61 66 2E 63 6F 6D 22 5D 2C 0A 22 76         erleaf.com"],."v
+    69 64 65 6F 55 72 6C 73 22 3A 20 5B 22 2E 66 61         ideoUrls": [".fa
+    63 65 62 6F 6F 6B 2E 63 6F 6D 7C 70 61 67 65 6C         cebook.com|pagel
+    65 74 22 2C 22 70 6C 61 79 65 72 2E 76 69 6D 65         et","player.vime
+    6F 2E 63 6F 6D 2F 22 2C 22 69 6E 73 74 61 67 72         o.com/","instagr
+    61 6D 2E 63 6F 6D 2F 70 2F 22 5D 2C 0A 22 66 69         am.com/p/"],."fi
+    6C 65 45 78 74 73 22 3A 20 5B 22 33 47 50 22 2C         leExts": ["3GP",
+    22 37 5A 22 2C 22 41 56 49 22 2C 22 42 5A 32 22         "7Z","AVI","BZ2"
+    2C 22 44 45 42 22 2C 22 44 4F 43 22 2C 22 44 4F         ,"DEB","DOC","DO
+    43 58 22 2C 22 45 58 45 22 2C 22 47 5A 22 2C 22         CX","EXE","GZ","
+    49 53 4F 22 2C 22 4D 53 49 22 2C 22 50 44 46 22         ISO","MSI","PDF"
+    2C 22 50 50 54 22 2C 22 50 50 54 58 22 2C 22 52         ,"PPT","PPTX","R
+    41 52 22 2C 22 52 50 4D 22 2C 22 58 4C 53 22 2C         AR","RPM","XLS",
+    22 58 4C 53 58 22 2C 22 53 49 54 22 2C 22 53 49         "XLSX","SIT","SI
+    54 58 22 2C 22 54 41 52 22 2C 22 4A 41 52 22 2C         TX","TAR","JAR",
+    22 5A 49 50 22 2C 22 58 5A 22 5D 2C 0A 22 76 69         "ZIP","XZ"],."vi
+    64 45 78 74 73 22 3A 20 5B 22 4D 50 34 22 2C 22         dExts": ["MP4","
+    4D 33 55 38 22 2C 22 46 34 4D 22 2C 22 57 45 42         M3U8","F4M","WEB
+    4D 22 2C 22 4F 47 47 22 2C 22 4D 50 33 22 2C 22         M","OGG","MP3","
+    41 41 43 22 2C 22 46 4C 56 22 2C 22 4D 4B 56 22         AAC","FLV","MKV"
+    2C 22 44 49 56 58 22 2C 22 4D 4F 56 22 2C 22 4D         ,"DIVX","MOV","M
+    50 47 22 2C 22 4D 50 45 47 22 2C 22 4F 50 55 53         PG","MPEG","OPUS
+    22 5D 0A 7D                                             "].}
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 52  Bytes(Size of Packet)
+   |-Identification    : 22563
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58526
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842608504
+   |-Acknowledge Number : 4001838014
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 0
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65064
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 34 58 23 40 00 40 06 E4 9E 7F 00 00 01         E..4X#@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C3 78 EE 87 33 BE 80 10 18 1B         ..%..n.x..3.€...
+    FE 28 00 00 01 01 08 0A 8B 1C FE 84 8B 1C FE 84         .(..............
+Data Payload
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 300  Bytes(Size of Packet)
+   |-Identification    : 22564
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58277
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842608504
+   |-Acknowledge Number : 4001838014
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65312
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 01 2C 58 24 40 00 40 06 E3 A5 7F 00 00 01         E..,X$@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C3 78 EE 87 33 BE 80 18 18 1B         ..%..n.x..3.€...
+    FF 20 00 00 01 01 08 0A 8B 1D 02 69 8B 1C FE 84         . .........i....
+Data Payload
+    47 45 54 20 2F 73 79 6E 63 20 48 54 54 50 2F 31         GET /sync HTTP/1
+    2E 31 0D 0A 48 6F 73 74 3A 20 31 32 37 2E 30 2E         .1..Host: 127.0.
+    30 2E 31 3A 39 36 31 34 0D 0A 55 73 65 72 2D 41         0.1:9614..User-A
+    67 65 6E 74 3A 20 4D 6F 7A 69 6C 6C 61 2F 35 2E         gent: Mozilla/5.
+    30 20 28 58 31 31 3B 20 55 62 75 6E 74 75 3B 20         0 (X11; Ubuntu; 
+    4C 69 6E 75 78 20 78 38 36 5F 36 34 3B 20 72 76         Linux x86_64; rv
+    3A 36 32 2E 30 29 20 47 65 63 6B 6F 2F 32 30 31         :62.0) Gecko/201
+    30 30 31 30 31 20 46 69 72 65 66 6F 78 2F 36 32         00101 Firefox/62
+    2E 30 0D 0A 41 63 63 65 70 74 3A 20 2A 2F 2A 0D         .0..Accept: */*.
+    0A 41 63 63 65 70 74 2D 4C 61 6E 67 75 61 67 65         .Accept-Language
+    3A 20 70 74 2D 42 52 2C 65 6E 2D 55 53 3B 71 3D         : pt-BR,en-US;q=
+    30 2E 37 2C 65 6E 3B 71 3D 30 2E 33 0D 0A 41 63         0.7,en;q=0.3..Ac
+    63 65 70 74 2D 45 6E 63 6F 64 69 6E 67 3A 20 67         cept-Encoding: g
+    7A 69 70 2C 20 64 65 66 6C 61 74 65 0D 0A 43 6F         zip, deflate..Co
+    6E 6E 65 63 74 69 6F 6E 3A 20 6B 65 65 70 2D 61         nnection: keep-a
+    6C 69 76 65 0D 0A 0D 0A                                 live....
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 227  Bytes(Size of Packet)
+   |-Identification    : 26316
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 54598
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 9614
+   |-Destination Port : 58384
+   |-Sequence Number    : 4001838014
+   |-Acknowledge Number : 2842608752
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6158
+   |-Checksum       : 65239
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 E3 66 CC 40 00 40 06 D5 46 7F 00 00 01         E...f.@.@..F...
+    7F 00 00 01                                             ...
+TCP Header
+    25 8E E4 10 EE 87 33 BE A9 6E C4 70 80 18 18 0E         %.....3..n.p€...
+    FE D7 00 00 01 01 08 0A 8B 1D 02 6A 8B 1D 02 69         ...........j...i
+Data Payload
+    48 54 54 50 2F 31 2E 31 20 32 30 30 20 4F 4B 0D         HTTP/1.1 200 OK.
+    0A 43 6F 6E 74 65 6E 74 2D 4C 65 6E 67 74 68 3A         .Content-Length:
+    20 34 35 32 0D 0A 43 6F 6E 74 65 6E 74 2D 54 79          452..Content-Ty
+    70 65 3A 20 61 70 70 6C 69 63 61 74 69 6F 6E 2F         pe: application/
+    6A 73 6F 6E 0D 0A 43 61 63 68 65 2D 43 6F 6E 74         json..Cache-Cont
+    72 6F 6C 3A 20 6E 6F 2D 63 61 63 68 65 2C 20 6E         rol: no-cache, n
+    6F 2D 73 74 6F 72 65 2C 20 6D 75 73 74 2D 72 65         o-store, must-re
+    76 61 6C 69 64 61 74 65 0D 0A 50 72 61 67 6D 61         validate..Pragma
+    3A 20 6E 6F 2D 63 61 63 68 65 0D 0A 45 78 70 69         : no-cache..Expi
+    72 65 73 3A 20 30 0D 0A 43 6F 6E 74 65 6E 74 2D         res: 0..Content-
+    4C 65 6E 67 74 68 3A 20 34 35 32 0D 0A 0D 0A            Length: 452....
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 52  Bytes(Size of Packet)
+   |-Identification    : 22565
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58524
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842608752
+   |-Acknowledge Number : 4001838189
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 0
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65064
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 34 58 25 40 00 40 06 E4 9C 7F 00 00 01         E..4X%@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C4 70 EE 87 34 6D 80 10 18 1B         ..%..n.p..4m€...
+    FE 28 00 00 01 01 08 0A 8B 1D 02 6A 8B 1D 02 6A         .(.........j...j
+Data Payload
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 504  Bytes(Size of Packet)
+   |-Identification    : 26317
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 54320
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 9614
+   |-Destination Port : 58384
+   |-Sequence Number    : 4001838189
+   |-Acknowledge Number : 2842608752
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6158
+   |-Checksum       : 65516
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 01 F8 66 CD 40 00 40 06 D4 30 7F 00 00 01         E...f.@.@..0...
+    7F 00 00 01                                             ...
+TCP Header
+    25 8E E4 10 EE 87 34 6D A9 6E C4 70 80 18 18 0E         %.....4m.n.p€...
+    FF EC 00 00 01 01 08 0A 8B 1D 02 6A 8B 1D 02 6A         ...........j...j
+Data Payload
+    7B 0A 22 65 6E 61 62 6C 65 64 22 3A 20 74 72 75         {."enabled": tru
+    65 2C 0A 22 62 6C 6F 63 6B 65 64 48 6F 73 74 73         e,."blockedHosts
+    22 3A 20 5B 22 75 70 64 61 74 65 2E 6D 69 63 72         ": ["update.micr
+    6F 73 6F 66 74 2E 63 6F 6D 22 2C 22 77 69 6E 64         osoft.com","wind
+    6F 77 73 75 70 64 61 74 65 2E 63 6F 6D 22 2C 22         owsupdate.com","
+    74 68 77 61 77 74 65 2E 63 6F 6D 22 2C 22 6F 76         thwawte.com","ov
+    65 72 6C 65 61 66 2E 63 6F 6D 22 5D 2C 0A 22 76         erleaf.com"],."v
+    69 64 65 6F 55 72 6C 73 22 3A 20 5B 22 2E 66 61         ideoUrls": [".fa
+    63 65 62 6F 6F 6B 2E 63 6F 6D 7C 70 61 67 65 6C         cebook.com|pagel
+    65 74 22 2C 22 70 6C 61 79 65 72 2E 76 69 6D 65         et","player.vime
+    6F 2E 63 6F 6D 2F 22 2C 22 69 6E 73 74 61 67 72         o.com/","instagr
+    61 6D 2E 63 6F 6D 2F 70 2F 22 5D 2C 0A 22 66 69         am.com/p/"],."fi
+    6C 65 45 78 74 73 22 3A 20 5B 22 33 47 50 22 2C         leExts": ["3GP",
+    22 37 5A 22 2C 22 41 56 49 22 2C 22 42 5A 32 22         "7Z","AVI","BZ2"
+    2C 22 44 45 42 22 2C 22 44 4F 43 22 2C 22 44 4F         ,"DEB","DOC","DO
+    43 58 22 2C 22 45 58 45 22 2C 22 47 5A 22 2C 22         CX","EXE","GZ","
+    49 53 4F 22 2C 22 4D 53 49 22 2C 22 50 44 46 22         ISO","MSI","PDF"
+    2C 22 50 50 54 22 2C 22 50 50 54 58 22 2C 22 52         ,"PPT","PPTX","R
+    41 52 22 2C 22 52 50 4D 22 2C 22 58 4C 53 22 2C         AR","RPM","XLS",
+    22 58 4C 53 58 22 2C 22 53 49 54 22 2C 22 53 49         "XLSX","SIT","SI
+    54 58 22 2C 22 54 41 52 22 2C 22 4A 41 52 22 2C         TX","TAR","JAR",
+    22 5A 49 50 22 2C 22 58 5A 22 5D 2C 0A 22 76 69         "ZIP","XZ"],."vi
+    64 45 78 74 73 22 3A 20 5B 22 4D 50 34 22 2C 22         dExts": ["MP4","
+    4D 33 55 38 22 2C 22 46 34 4D 22 2C 22 57 45 42         M3U8","F4M","WEB
+    4D 22 2C 22 4F 47 47 22 2C 22 4D 50 33 22 2C 22         M","OGG","MP3","
+    41 41 43 22 2C 22 46 4C 56 22 2C 22 4D 4B 56 22         AAC","FLV","MKV"
+    2C 22 44 49 56 58 22 2C 22 4D 4F 56 22 2C 22 4D         ,"DIVX","MOV","M
+    50 47 22 2C 22 4D 50 45 47 22 2C 22 4F 50 55 53         PG","MPEG","OPUS
+    22 5D 0A 7D                                             "].}
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 52  Bytes(Size of Packet)
+   |-Identification    : 22566
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58523
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842608752
+   |-Acknowledge Number : 4001838641
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 0
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65064
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 34 58 26 40 00 40 06 E4 9B 7F 00 00 01         E..4X&@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C4 70 EE 87 36 31 80 10 18 1B         ..%..n.p..61€...
+    FE 28 00 00 01 01 08 0A 8B 1D 02 6A 8B 1D 02 6A         .(.........j...j
+Data Payload
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 300  Bytes(Size of Packet)
+   |-Identification    : 22567
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58274
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842608752
+   |-Acknowledge Number : 4001838641
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65312
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 01 2C 58 27 40 00 40 06 E3 A2 7F 00 00 01         E..,X'@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C4 70 EE 87 36 31 80 18 18 1B         ..%..n.p..61€...
+    FF 20 00 00 01 01 08 0A 8B 1D 06 53 8B 1D 02 6A         . .........S...j
+Data Payload
+    47 45 54 20 2F 73 79 6E 63 20 48 54 54 50 2F 31         GET /sync HTTP/1
+    2E 31 0D 0A 48 6F 73 74 3A 20 31 32 37 2E 30 2E         .1..Host: 127.0.
+    30 2E 31 3A 39 36 31 34 0D 0A 55 73 65 72 2D 41         0.1:9614..User-A
+    67 65 6E 74 3A 20 4D 6F 7A 69 6C 6C 61 2F 35 2E         gent: Mozilla/5.
+    30 20 28 58 31 31 3B 20 55 62 75 6E 74 75 3B 20         0 (X11; Ubuntu; 
+    4C 69 6E 75 78 20 78 38 36 5F 36 34 3B 20 72 76         Linux x86_64; rv
+    3A 36 32 2E 30 29 20 47 65 63 6B 6F 2F 32 30 31         :62.0) Gecko/201
+    30 30 31 30 31 20 46 69 72 65 66 6F 78 2F 36 32         00101 Firefox/62
+    2E 30 0D 0A 41 63 63 65 70 74 3A 20 2A 2F 2A 0D         .0..Accept: */*.
+    0A 41 63 63 65 70 74 2D 4C 61 6E 67 75 61 67 65         .Accept-Language
+    3A 20 70 74 2D 42 52 2C 65 6E 2D 55 53 3B 71 3D         : pt-BR,en-US;q=
+    30 2E 37 2C 65 6E 3B 71 3D 30 2E 33 0D 0A 41 63         0.7,en;q=0.3..Ac
+    63 65 70 74 2D 45 6E 63 6F 64 69 6E 67 3A 20 67         cept-Encoding: g
+    7A 69 70 2C 20 64 65 66 6C 61 74 65 0D 0A 43 6F         zip, deflate..Co
+    6E 6E 65 63 74 69 6F 6E 3A 20 6B 65 65 70 2D 61         nnection: keep-a
+    6C 69 76 65 0D 0A 0D 0A                                 live....
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 227  Bytes(Size of Packet)
+   |-Identification    : 26318
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 54596
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 9614
+   |-Destination Port : 58384
+   |-Sequence Number    : 4001838641
+   |-Acknowledge Number : 2842609000
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6158
+   |-Checksum       : 65239
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 E3 66 CE 40 00 40 06 D5 44 7F 00 00 01         E...f.@.@..D...
+    7F 00 00 01                                             ...
+TCP Header
+    25 8E E4 10 EE 87 36 31 A9 6E C5 68 80 18 18 0E         %.....61.n.h€...
+    FE D7 00 00 01 01 08 0A 8B 1D 06 54 8B 1D 06 53         ...........T...S
+Data Payload
+    48 54 54 50 2F 31 2E 31 20 32 30 30 20 4F 4B 0D         HTTP/1.1 200 OK.
+    0A 43 6F 6E 74 65 6E 74 2D 4C 65 6E 67 74 68 3A         .Content-Length:
+    20 34 35 32 0D 0A 43 6F 6E 74 65 6E 74 2D 54 79          452..Content-Ty
+    70 65 3A 20 61 70 70 6C 69 63 61 74 69 6F 6E 2F         pe: application/
+    6A 73 6F 6E 0D 0A 43 61 63 68 65 2D 43 6F 6E 74         json..Cache-Cont
+    72 6F 6C 3A 20 6E 6F 2D 63 61 63 68 65 2C 20 6E         rol: no-cache, n
+    6F 2D 73 74 6F 72 65 2C 20 6D 75 73 74 2D 72 65         o-store, must-re
+    76 61 6C 69 64 61 74 65 0D 0A 50 72 61 67 6D 61         validate..Pragma
+    3A 20 6E 6F 2D 63 61 63 68 65 0D 0A 45 78 70 69         : no-cache..Expi
+    72 65 73 3A 20 30 0D 0A 43 6F 6E 74 65 6E 74 2D         res: 0..Content-
+    4C 65 6E 67 74 68 3A 20 34 35 32 0D 0A 0D 0A            Length: 452....
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 52  Bytes(Size of Packet)
+   |-Identification    : 22568
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58521
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842609000
+   |-Acknowledge Number : 4001838816
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 0
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65064
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 34 58 28 40 00 40 06 E4 99 7F 00 00 01         E..4X(@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C5 68 EE 87 36 E0 80 10 18 1B         ..%..n.h..6.€...
+    FE 28 00 00 01 01 08 0A 8B 1D 06 54 8B 1D 06 54         .(.........T...T
+Data Payload
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 504  Bytes(Size of Packet)
+   |-Identification    : 26319
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 54318
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 9614
+   |-Destination Port : 58384
+   |-Sequence Number    : 4001838816
+   |-Acknowledge Number : 2842609000
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6158
+   |-Checksum       : 65516
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 01 F8 66 CF 40 00 40 06 D4 2E 7F 00 00 01         E...f.@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    25 8E E4 10 EE 87 36 E0 A9 6E C5 68 80 18 18 0E         %.....6..n.h€...
+    FF EC 00 00 01 01 08 0A 8B 1D 06 54 8B 1D 06 54         ...........T...T
+Data Payload
+    7B 0A 22 65 6E 61 62 6C 65 64 22 3A 20 74 72 75         {."enabled": tru
+    65 2C 0A 22 62 6C 6F 63 6B 65 64 48 6F 73 74 73         e,."blockedHosts
+    22 3A 20 5B 22 75 70 64 61 74 65 2E 6D 69 63 72         ": ["update.micr
+    6F 73 6F 66 74 2E 63 6F 6D 22 2C 22 77 69 6E 64         osoft.com","wind
+    6F 77 73 75 70 64 61 74 65 2E 63 6F 6D 22 2C 22         owsupdate.com","
+    74 68 77 61 77 74 65 2E 63 6F 6D 22 2C 22 6F 76         thwawte.com","ov
+    65 72 6C 65 61 66 2E 63 6F 6D 22 5D 2C 0A 22 76         erleaf.com"],."v
+    69 64 65 6F 55 72 6C 73 22 3A 20 5B 22 2E 66 61         ideoUrls": [".fa
+    63 65 62 6F 6F 6B 2E 63 6F 6D 7C 70 61 67 65 6C         cebook.com|pagel
+    65 74 22 2C 22 70 6C 61 79 65 72 2E 76 69 6D 65         et","player.vime
+    6F 2E 63 6F 6D 2F 22 2C 22 69 6E 73 74 61 67 72         o.com/","instagr
+    61 6D 2E 63 6F 6D 2F 70 2F 22 5D 2C 0A 22 66 69         am.com/p/"],."fi
+    6C 65 45 78 74 73 22 3A 20 5B 22 33 47 50 22 2C         leExts": ["3GP",
+    22 37 5A 22 2C 22 41 56 49 22 2C 22 42 5A 32 22         "7Z","AVI","BZ2"
+    2C 22 44 45 42 22 2C 22 44 4F 43 22 2C 22 44 4F         ,"DEB","DOC","DO
+    43 58 22 2C 22 45 58 45 22 2C 22 47 5A 22 2C 22         CX","EXE","GZ","
+    49 53 4F 22 2C 22 4D 53 49 22 2C 22 50 44 46 22         ISO","MSI","PDF"
+    2C 22 50 50 54 22 2C 22 50 50 54 58 22 2C 22 52         ,"PPT","PPTX","R
+    41 52 22 2C 22 52 50 4D 22 2C 22 58 4C 53 22 2C         AR","RPM","XLS",
+    22 58 4C 53 58 22 2C 22 53 49 54 22 2C 22 53 49         "XLSX","SIT","SI
+    54 58 22 2C 22 54 41 52 22 2C 22 4A 41 52 22 2C         TX","TAR","JAR",
+    22 5A 49 50 22 2C 22 58 5A 22 5D 2C 0A 22 76 69         "ZIP","XZ"],."vi
+    64 45 78 74 73 22 3A 20 5B 22 4D 50 34 22 2C 22         dExts": ["MP4","
+    4D 33 55 38 22 2C 22 46 34 4D 22 2C 22 57 45 42         M3U8","F4M","WEB
+    4D 22 2C 22 4F 47 47 22 2C 22 4D 50 33 22 2C 22         M","OGG","MP3","
+    41 41 43 22 2C 22 46 4C 56 22 2C 22 4D 4B 56 22         AAC","FLV","MKV"
+    2C 22 44 49 56 58 22 2C 22 4D 4F 56 22 2C 22 4D         ,"DIVX","MOV","M
+    50 47 22 2C 22 4D 50 45 47 22 2C 22 4F 50 55 53         PG","MPEG","OPUS
+    22 5D 0A 7D                                             "].}
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 52  Bytes(Size of Packet)
+   |-Identification    : 22569
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58520
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842609000
+   |-Acknowledge Number : 4001839268
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 0
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65064
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 34 58 29 40 00 40 06 E4 98 7F 00 00 01         E..4X)@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C5 68 EE 87 38 A4 80 10 18 1B         ..%..n.h..8.€...
+    FE 28 00 00 01 01 08 0A 8B 1D 06 54 8B 1D 06 54         .(.........T...T
+Data Payload
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 300  Bytes(Size of Packet)
+   |-Identification    : 22570
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58271
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842609000
+   |-Acknowledge Number : 4001839268
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65312
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 01 2C 58 2A 40 00 40 06 E3 9F 7F 00 00 01         E..,X*@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C5 68 EE 87 38 A4 80 18 18 1B         ..%..n.h..8.€...
+    FF 20 00 00 01 01 08 0A 8B 1D 0A 3B 8B 1D 06 54         . .........;...T
+Data Payload
+    47 45 54 20 2F 73 79 6E 63 20 48 54 54 50 2F 31         GET /sync HTTP/1
+    2E 31 0D 0A 48 6F 73 74 3A 20 31 32 37 2E 30 2E         .1..Host: 127.0.
+    30 2E 31 3A 39 36 31 34 0D 0A 55 73 65 72 2D 41         0.1:9614..User-A
+    67 65 6E 74 3A 20 4D 6F 7A 69 6C 6C 61 2F 35 2E         gent: Mozilla/5.
+    30 20 28 58 31 31 3B 20 55 62 75 6E 74 75 3B 20         0 (X11; Ubuntu; 
+    4C 69 6E 75 78 20 78 38 36 5F 36 34 3B 20 72 76         Linux x86_64; rv
+    3A 36 32 2E 30 29 20 47 65 63 6B 6F 2F 32 30 31         :62.0) Gecko/201
+    30 30 31 30 31 20 46 69 72 65 66 6F 78 2F 36 32         00101 Firefox/62
+    2E 30 0D 0A 41 63 63 65 70 74 3A 20 2A 2F 2A 0D         .0..Accept: */*.
+    0A 41 63 63 65 70 74 2D 4C 61 6E 67 75 61 67 65         .Accept-Language
+    3A 20 70 74 2D 42 52 2C 65 6E 2D 55 53 3B 71 3D         : pt-BR,en-US;q=
+    30 2E 37 2C 65 6E 3B 71 3D 30 2E 33 0D 0A 41 63         0.7,en;q=0.3..Ac
+    63 65 70 74 2D 45 6E 63 6F 64 69 6E 67 3A 20 67         cept-Encoding: g
+    7A 69 70 2C 20 64 65 66 6C 61 74 65 0D 0A 43 6F         zip, deflate..Co
+    6E 6E 65 63 74 69 6F 6E 3A 20 6B 65 65 70 2D 61         nnection: keep-a
+    6C 69 76 65 0D 0A 0D 0A                                 live....
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 227  Bytes(Size of Packet)
+   |-Identification    : 26320
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 54594
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 9614
+   |-Destination Port : 58384
+   |-Sequence Number    : 4001839268
+   |-Acknowledge Number : 2842609248
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6158
+   |-Checksum       : 65239
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 E3 66 D0 40 00 40 06 D5 42 7F 00 00 01         E...f.@.@..B...
+    7F 00 00 01                                             ...
+TCP Header
+    25 8E E4 10 EE 87 38 A4 A9 6E C6 60 80 18 18 0E         %.....8..n.`€...
+    FE D7 00 00 01 01 08 0A 8B 1D 0A 3C 8B 1D 0A 3B         ...........<...;
+Data Payload
+    48 54 54 50 2F 31 2E 31 20 32 30 30 20 4F 4B 0D         HTTP/1.1 200 OK.
+    0A 43 6F 6E 74 65 6E 74 2D 4C 65 6E 67 74 68 3A         .Content-Length:
+    20 34 35 32 0D 0A 43 6F 6E 74 65 6E 74 2D 54 79          452..Content-Ty
+    70 65 3A 20 61 70 70 6C 69 63 61 74 69 6F 6E 2F         pe: application/
+    6A 73 6F 6E 0D 0A 43 61 63 68 65 2D 43 6F 6E 74         json..Cache-Cont
+    72 6F 6C 3A 20 6E 6F 2D 63 61 63 68 65 2C 20 6E         rol: no-cache, n
+    6F 2D 73 74 6F 72 65 2C 20 6D 75 73 74 2D 72 65         o-store, must-re
+    76 61 6C 69 64 61 74 65 0D 0A 50 72 61 67 6D 61         validate..Pragma
+    3A 20 6E 6F 2D 63 61 63 68 65 0D 0A 45 78 70 69         : no-cache..Expi
+    72 65 73 3A 20 30 0D 0A 43 6F 6E 74 65 6E 74 2D         res: 0..Content-
+    4C 65 6E 67 74 68 3A 20 34 35 32 0D 0A 0D 0A            Length: 452....
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 52  Bytes(Size of Packet)
+   |-Identification    : 22571
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 58518
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 58384
+   |-Destination Port : 9614
+   |-Sequence Number    : 2842609248
+   |-Acknowledge Number : 4001839443
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 0
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6171
+   |-Checksum       : 65064
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 00 34 58 2B 40 00 40 06 E4 96 7F 00 00 01         E..4X+@.@......
+    7F 00 00 01                                             ...
+TCP Header
+    E4 10 25 8E A9 6E C6 60 EE 87 39 53 80 10 18 1B         ..%..n.`..9S€...
+    FE 28 00 00 01 01 08 0A 8B 1D 0A 3C 8B 1D 0A 3C         .(.........<...<
+Data Payload
+
+###########################################################
+
+***********************TCP Packet*************************
+
+IP Header
+   |-IP Version        : 4
+   |-IP Header Length  : 5 DWORDS or 20 Bytes
+   |-Type Of Service   : 0
+   |-IP Total Length   : 504  Bytes(Size of Packet)
+   |-Identification    : 26321
+   |-TTL      : 64
+   |-Protocol : 6
+   |-Checksum : 54316
+   |-Source IP        : 127.0.0.1
+   |-Destination IP   : 127.0.0.1
+
+TCP Header
+   |-Source Port      : 9614
+   |-Destination Port : 58384
+   |-Sequence Number    : 4001839443
+   |-Acknowledge Number : 2842609248
+   |-Header Length      : 8 DWORDS or 32 BYTES
+   |-Urgent Flag          : 0
+   |-Acknowledgement Flag : 1
+   |-Push Flag            : 1
+   |-Reset Flag           : 0
+   |-Synchronise Flag     : 0
+   |-Finish Flag          : 0
+   |-Window         : 6158
+   |-Checksum       : 65516
+   |-Urgent Pointer : 0
+
+                        DATA Dump                         
+IP Header
+    45 00 01 F8 66 D1 40 00 40 06 D4 2C 7F 00 00 01         E...f.@.@..,...
+    7F 00 00 01                                             ...
+TCP Header
+    25 8E E4 10 EE 87 39 53 A9 6E C6 60 80 18 18 0E         %.....9S.n.`€...
+    FF EC 00 00 01 01 08 0A 8B 1D 0A 3C 8B 1D 0A 3C         ...........<...<
+Data Payload
+    7B 0A 22 65 6E 61 62 6C 65 64 22 3A 20 74 72 75         {."enabled": tru
+    65 2C 0A 22 62 6C 6F 63 6B 65 64 48 6F 73 74 73         e,."blockedHosts
+    22 3A 20 5B 22 75 70 64 61 74 65 2E 6D 69 63 72         ": ["update.micr
+    6F 73 6F 66 74 2E 63 6F 6D 22 2C 22 77 69 6E 64         osoft.com","wind
+    6F 77 73 75 70 64 61 74 65 2E 63 6F 6D 22 2C 22         owsupdate.com","
+    74 68 77 61 77 74 65 2E 63 6F 6D 22 2C 22 6F 76         thwawte.com","ov
+    65 72 6C 65 61 66 2E 63 6F 6D 22 5D 2C 0A 22 76         erleaf.com"],."v
+    69 64 65 6F 55 72 6C 73 22 3A 20 5B 22 2E 66 61         ideoUrls": [".fa
+    63 65 62 6F 6F 6B 2E 63 6F 6D 7C 70 61 67 65 6C         cebook.com|pagel
+    65 74 22 2C 22 70 6C 61 79 65 72 2E 76 69 6D 65         et","player.vime
+    6F 2E 63 6F 6D 2F 22 2C 22 69 6E 73 74 61 67 72         o.com/","instagr
+    61 6D 2E 63 6F 6D 2F 70 2F 22 5D 2C 0A 22 66 69         am.com/p/"],."fi
+    6C 65 45 78 74 73 22 3A 20 5B 22 33 47 50 22 2C         leExts": ["3GP",
+    22 37 5A 22 2C 22 41 56 49 22 2C 22 42 5A 32 22         "7Z","AVI","BZ2"
+    2C 22 44 45 42 22 2C 22 44 4F 43 22 2C 22 44 4F         ,"DEB","DOC","DO
+    43 58 22 2C 22 45 58 45 22 2C 22 47 5A 22 2C 22         CX","EXE","GZ","
+    49 53 4F 22 2C 22 4D 53 49 22 2C 22 50 44 46 22         ISO","MSI","PDF"
+    2C 22 50 50 54 22 2C 22 50 50 54 58 22 2C 22 52         ,"PPT","PPTX","R
+    41 52 22 2C 22 52 50 4D 22 2C 22 58 4C 53 22 2C         AR","RPM","XLS",
+    22 58 4C 53 58 22 2C 22 53 49 54 22 2C 22 53 49         "XLSX","SIT","SI
+    54 58 22 2C 22 54 41 52 22 2C 22 4A 41 52 22 2C         TX","TAR","JAR",
+    22 5A 49 50 22 2C 22 58 5A 22 5D 2C 0A 22 76 69         "ZIP","XZ"],."vi
+    64 45 78 
