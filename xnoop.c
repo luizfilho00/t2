@@ -10,6 +10,8 @@
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
+#include <netinet/udp.h>
+#include<netinet/ip_icmp.h>
 #include <net/ethernet.h>
 #include <signal.h>
 
@@ -45,6 +47,26 @@ void print_eth_address(char *s, unsigned char *eth_addr)
 	printf("%s %02X:%02X:%02X:%02X:%02X:%02X", s,
 	       eth_addr[0], eth_addr[1], eth_addr[2],
 	       eth_addr[3], eth_addr[4], eth_addr[5]);
+}
+
+void print_udp(unsigned char* packet, int size){
+	unsigned short iphdrlen;
+     
+    struct iphdr *iph = (struct iphdr *)packet;
+    iphdrlen = iph->ihl*4;
+     
+    struct udphdr *udph=(struct udphdr*)(packet + iphdrlen);
+
+	printf("\n\n***********************UDP Packet*************************\n");    
+    
+	printf("\n");
+	printf("UDP Header\n");
+
+    printf("   |-Source Port      : %d\n",ntohs(udph->source));
+    printf("   |-Destination Port : %d\n",ntohs(udph->dest));
+    printf("   |-UDP Length       : %d\n",ntohs(udph->len));
+    printf("   |-UDP Checksum     : %d\n",ntohs(udph->check));
+    printf("\n");
 }
 
 /**
@@ -133,12 +155,17 @@ void doProcess(unsigned char* packet, int len) {
         if (iph->protocol == 6){ // TCP
             print_tcp(packet, sizeof(packet));
 			tcp++;
-		}
-
+		} else if(iph->protocol == 17){ //UDP
+			print_udp(packet, sizeof(packet));
+			udp++;
+		} 
+		
+		ip++; 
 	} else if(eth->ether_type == htons(0x0806)) {
 		//ARP
 		
 		//...
+		arp++;
 	}
 	fflush(stdout);
 }
