@@ -49,6 +49,10 @@ void print_eth_address(char *s, unsigned char *eth_addr)
 	       eth_addr[3], eth_addr[4], eth_addr[5]);
 }
 
+
+/**
+* Imprime pacote UDP
+*/
 void print_udp(unsigned char* packet, int size){
 	unsigned short iphdrlen;
      
@@ -68,6 +72,34 @@ void print_udp(unsigned char* packet, int size){
     printf("   |-UDP Checksum     : %d\n",ntohs(udph->check));
     printf("\n");
 }
+
+/**
+* Imprime pacote ICMP
+*/
+void print_icmp(unsigned char* packet, int size){
+	unsigned short iphdrlen;
+     
+    struct iphdr *iph = (struct iphdr *)packet;
+    iphdrlen = iph->ihl*4;
+
+    struct icmphdr *icmph=(struct icmphdr*)(packet + iphdrlen);
+
+    printf("\n\n***********************ICMP Packet*************************\n");   
+ 	printf("ICMP Header\n");
+    printf("   |-Type : %d",(unsigned int)(icmph->type));
+             
+    if((unsigned int)(icmph->type) == 11) 
+    	printf("  (TTL Expired)\n");
+    else if((unsigned int)(icmph->type) == ICMP_ECHOREPLY) 
+        printf("  (ICMP Echo Reply)\n");
+    printf("   |-Code : %d\n",(unsigned int)(icmph->code));
+    printf("   |-Checksum : %d\n",ntohs(icmph->checksum));
+    //printf("   |-ID       : %d\n",ntohs(icmph->id));
+    //printf("   |-Sequence : %d\n",ntohs(icmph->sequence));
+    printf("\n");
+}
+
+
 
 /**
 * Imprime pacote TCP
@@ -158,8 +190,11 @@ void doProcess(unsigned char* packet, int len) {
 		} else if(iph->protocol == 17){ //UDP
 			print_udp(packet, sizeof(packet));
 			udp++;
-		} 
-		
+		} else if(iph->protocol == 1){ // ICMP
+			print_icmp(packet, sizeof(packet));
+			icmp++;
+		}
+
 		ip++; 
 	} else if(eth->ether_type == htons(0x0806)) {
 		//ARP
@@ -195,6 +230,10 @@ int main(int argc, char** argv) {
 	
 	if (strcmp(argv[1], "-i"))
 		print_usage();	
+
+	// if (strcmp(argc == 3) {
+
+	// }
 	
 	saddr_len = sizeof(saddr);
 	sockfd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));  
