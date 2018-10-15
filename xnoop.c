@@ -11,6 +11,7 @@
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
 #include <net/ethernet.h>
+#include <signal.h>
 
 #define MAX_PACKET_SIZE 65536
 #define MIN_PACKET_SIZE 64
@@ -20,9 +21,9 @@
 //! char a:4, b:4 -> a = 4 primeiros bits, 8 = 4 ultimos bits
 //! short   = 16 bits
 //! int     = 32 bits
+struct sockaddr_in source, dest;
 
-struct sockaddr_in source,dest;
-
+int tcp = 0, arp = 0, icmp = 0, udp = 0, ip = 0, total = 0; 
 /* */
 struct ether_hdr {
 	unsigned char	ether_dhost[6];	// Destination address
@@ -79,6 +80,16 @@ void print_tcp(unsigned char* packet, int size){
     printf("   |-Urgent Pointer : %d\n",tcph->urg_ptr);
 }
 
+void treat_sign(int signal) 
+{ 
+    if (signal == SIGINT){
+		printf("\nRecebido SIGINT\n");
+
+		printf("ARP : %d   \nIP : %d  \nICMP : %d  \nUDP : %d   \nTCP : %d    \nTotal : %d  \n", arp, ip, icmp, udp, tcp, total);
+	}
+        
+    exit(0); 
+} 
 /* */
 // Break this function to implement the functionalities of your packet analyser
 void doProcess(unsigned char* packet, int len) {
@@ -86,7 +97,7 @@ void doProcess(unsigned char* packet, int len) {
 		return;
 
 	struct ether_hdr* eth = (struct ether_hdr*) packet;
-
+	total++; 
 	print_eth_address("\nDst =", eth->ether_dhost);
 	print_eth_address(" Src =", eth->ether_shost);
 	printf(" Ether Type = 0x%04X Size = %d", ntohs(eth->ether_type), len);
@@ -119,8 +130,11 @@ void doProcess(unsigned char* packet, int len) {
         printf("   |-Source IP        : %s\n",inet_ntoa(source.sin_addr));
         printf("   |-Destination IP   : %s\n",inet_ntoa(dest.sin_addr));
 
-        if (iph->protocol == 6) // TCP
+        if (iph->protocol == 6){ // TCP
             print_tcp(packet, sizeof(packet));
+			tcp++;
+		}
+
 	} else if(eth->ether_type == htons(0x0806)) {
 		//ARP
 		
@@ -134,8 +148,12 @@ void doProcess(unsigned char* packet, int len) {
 void print_usage()
 {
 	printf("\nxnoop -i <interface> [options] [filter]\n");
+	printf("interface: interface name of each package will be read\n");
+	//printf("options:\n   -c n\n   -n\n   -v\n   -V\n");
+
 	exit(1);
 }
+
 /* */
 // main function
 int main(int argc, char** argv) {
@@ -178,6 +196,9 @@ int main(int argc, char** argv) {
 			exit(1);
 		}
 		doProcess(packet_buffer, n);
+		
+		if (signal(SIGINT, treat_sign) == SIG_ERR) 
+          	printf("\nNao captura SIGINT\n"); 
 	}
 
 	free(packet_buffer);
