@@ -10,7 +10,10 @@
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
+#include <netinet/udp.h>
+#include<netinet/ip_icmp.h>
 #include <net/ethernet.h>
+#include <signal.h>
 
 #define MAX_PACKET_SIZE 65536
 #define MIN_PACKET_SIZE 64
@@ -20,9 +23,9 @@
 //! char a:4, b:4 -> a = 4 primeiros bits, 8 = 4 ultimos bits
 //! short   = 16 bits
 //! int     = 32 bits
+struct sockaddr_in source, dest;
 
-struct sockaddr_in source,dest;
-
+int tcp = 0, arp = 0, icmp = 0, udp = 0, ip = 0, total = 0; 
 /* */
 struct ether_hdr {
 	unsigned char	ether_dhost[6];	// Destination address
@@ -45,6 +48,58 @@ void print_eth_address(char *s, unsigned char *eth_addr)
 	       eth_addr[0], eth_addr[1], eth_addr[2],
 	       eth_addr[3], eth_addr[4], eth_addr[5]);
 }
+
+
+/**
+* Imprime pacote UDP
+*/
+void print_udp(unsigned char* packet, int size){
+	unsigned short iphdrlen;
+     
+    struct iphdr *iph = (struct iphdr *)packet;
+    iphdrlen = iph->ihl*4;
+     
+    struct udphdr *udph=(struct udphdr*)(packet + iphdrlen);
+
+	printf("\n\n***********************UDP Packet*************************\n");    
+    
+	printf("\n");
+	printf("UDP Header\n");
+
+    printf("   |-Source Port      : %d\n",ntohs(udph->source));
+    printf("   |-Destination Port : %d\n",ntohs(udph->dest));
+    printf("   |-UDP Length       : %d\n",ntohs(udph->len));
+    printf("   |-UDP Checksum     : %d\n",ntohs(udph->check));
+    printf("\n");
+}
+
+/**
+* Imprime pacote ICMP
+*/
+void print_icmp(unsigned char* packet, int size){
+	unsigned short iphdrlen;
+     
+    struct iphdr *iph = (struct iphdr *)packet;
+    iphdrlen = iph->ihl*4;
+
+    struct icmphdr *icmph=(struct icmphdr*)(packet + iphdrlen);
+
+    printf("\n\n***********************ICMP Packet*************************\n");   
+ 	printf("ICMP Header\n");
+    printf("   |-Type : %d",(unsigned int)(icmph->type));
+             
+    if((unsigned int)(icmph->type) == 11) 
+    	printf("  (TTL Expired)\n");
+    else if((unsigned int)(icmph->type) == ICMP_ECHOREPLY) 
+        printf("  (ICMP Echo Reply)\n");
+    printf("   |-Code : %d\n",(unsigned int)(icmph->code));
+    printf("   |-Checksum : %d\n",ntohs(icmph->checksum));
+    //printf("   |-ID       : %d\n",ntohs(icmph->id));
+    //printf("   |-Sequence : %d\n",ntohs(icmph->sequence));
+    printf("\n");
+}
+
+
 
 /**
 * Imprime pacote TCP
@@ -79,6 +134,16 @@ void print_tcp(unsigned char* packet, int size){
     printf("   |-Urgent Pointer : %d\n",tcph->urg_ptr);
 }
 
+void treat_sign(int signal) 
+{ 
+    if (signal == SIGINT){
+		printf("\nRecebido SIGINT\n");
+
+		printf("ARP : %d   \nIP : %d  \nICMP : %d  \nUDP : %d   \nTCP : %d    \nTotal : %d  \n", arp, ip, icmp, udp, tcp, total);
+	}
+        
+    exit(0); 
+} 
 /* */
 // Break this function to implement the functionalities of your packet analyser
 void doProcess(unsigned char* packet, int len) {
@@ -86,7 +151,7 @@ void doProcess(unsigned char* packet, int len) {
 		return;
 
 	struct ether_hdr* eth = (struct ether_hdr*) packet;
-
+	total++; 
 	print_eth_address("\nDst =", eth->ether_dhost);
 	print_eth_address(" Src =", eth->ether_shost);
 	printf(" Ether Type = 0x%04X Size = %d", ntohs(eth->ether_type), len);
@@ -119,12 +184,23 @@ void doProcess(unsigned char* packet, int len) {
         printf("   |-Source IP        : %s\n",inet_ntoa(source.sin_addr));
         printf("   |-Destination IP   : %s\n",inet_ntoa(dest.sin_addr));
 
-        if (iph->protocol == 6) // TCP
+        if (iph->protocol == 6){ // TCP
             print_tcp(packet, sizeof(packet));
+			tcp++;
+		} else if(iph->protocol == 17){ //UDP
+			print_udp(packet, sizeof(packet));
+			udp++;
+		} else if(iph->protocol == 1){ // ICMP
+			print_icmp(packet, sizeof(packet));
+			icmp++;
+		}
+
+		ip++; 
 	} else if(eth->ether_type == htons(0x0806)) {
 		//ARP
 		
 		//...
+		arp++;
 	}
 	fflush(stdout);
 }
@@ -134,8 +210,12 @@ void doProcess(unsigned char* packet, int len) {
 void print_usage()
 {
 	printf("\nxnoop -i <interface> [options] [filter]\n");
+	printf("interface: interface name of each package will be read\n");
+	//printf("options:\n   -c n\n   -n\n   -v\n   -V\n");
+
 	exit(1);
 }
+
 /* */
 // main function
 int main(int argc, char** argv) {
@@ -150,6 +230,10 @@ int main(int argc, char** argv) {
 	
 	if (strcmp(argv[1], "-i"))
 		print_usage();	
+
+	// if (strcmp(argc == 3) {
+
+	// }
 	
 	saddr_len = sizeof(saddr);
 	sockfd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));  
@@ -178,6 +262,9 @@ int main(int argc, char** argv) {
 			exit(1);
 		}
 		doProcess(packet_buffer, n);
+		
+		if (signal(SIGINT, treat_sign) == SIG_ERR) 
+          	printf("\nNao captura SIGINT\n"); 
 	}
 
 	free(packet_buffer);
