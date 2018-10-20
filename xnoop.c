@@ -11,9 +11,13 @@
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
 #include <netinet/udp.h>
-#include<netinet/ip_icmp.h>
+#include <netinet/ip_icmp.h>
 #include <net/ethernet.h>
 #include <signal.h>
+
+#define ARP_REQUEST 1   /* ARP Request             */ 
+#define ARP_REPLY 2     /* ARP Reply               */ 
+
 
 #define MAX_PACKET_SIZE 65536
 #define MIN_PACKET_SIZE 64
@@ -25,7 +29,9 @@
 //! int     = 32 bits
 struct sockaddr_in source, dest;
 
+
 int tcp = 0, arp = 0, icmp = 0, udp = 0, ip = 0, total = 0; 
+
 /* */
 struct ether_hdr {
 	unsigned char	ether_dhost[6];	// Destination address
@@ -34,6 +40,19 @@ struct ether_hdr {
 };
 
 /* */
+typedef struct arphdr { 
+    u_int16_t htype;    		/* Hardware Type           */ 
+    u_int16_t ptype;    		/* Protocol Type           */ 
+    unsigned char hlen; 		/* Hardware Address Length */ 
+    unsigned char plen; 		/* Protocol Address Length */ 
+    u_int16_t oper;     		/* Operation Code          */ 
+    unsigned char sha[6];      	/* Sender hardware address */ 
+    unsigned char spa[4];      	/* Sender IP address       */ 
+    unsigned char tha[6];      	/* Target hardware address */ 
+    unsigned char tpa[4];      	/* Target IP address       */ 
+}arphdr_t; 
+
+
 /* */
 // Bind a socket to a interface
 int bind_iface_name(int fd, char *iface_name)
@@ -134,22 +153,27 @@ void print_tcp(unsigned char* packet, int size){
     printf("   |-Urgent Pointer : %d\n",tcph->urg_ptr);
 }
 
+/**
+* Trata sinais
+*/
 void treat_sign(int signal) 
 { 
     if (signal == SIGINT){
-		printf("\nRecebido SIGINT\n");
+		//printf("\nRecebido SIGINT\n");
 
-		printf("ARP : %d   \nIP : %d  \nICMP : %d  \nUDP : %d   \nTCP : %d    \nTotal : %d  \n", arp, ip, icmp, udp, tcp, total);
+		printf("\n\nARP : %d   \nIP : %d  \nICMP : %d  \nUDP : %d   \nTCP : %d    \nTotal : %d  \n", arp, ip, icmp, udp, tcp, total);
 	}
         
     exit(0); 
 } 
+
 /* */
 // Break this function to implement the functionalities of your packet analyser
 void doProcess(unsigned char* packet, int len) {
 	if(!len || len < MIN_PACKET_SIZE)
 		return;
-
+	
+	arphdr_t *arpheader = NULL;       /* Pointer to the ARP header              */ 
 	struct ether_hdr* eth = (struct ether_hdr*) packet;
 	total++; 
 	print_eth_address("\nDst =", eth->ether_dhost);
@@ -185,22 +209,51 @@ void doProcess(unsigned char* packet, int len) {
         printf("   |-Destination IP   : %s\n",inet_ntoa(dest.sin_addr));
 
         if (iph->protocol == 6){ // TCP
-            print_tcp(packet, sizeof(packet));
+            //print_tcp(packet, sizeof(packet));
 			tcp++;
 		} else if(iph->protocol == 17){ //UDP
-			print_udp(packet, sizeof(packet));
+			//print_udp(packet, sizeof(packet));
 			udp++;
 		} else if(iph->protocol == 1){ // ICMP
-			print_icmp(packet, sizeof(packet));
+			//print_icmp(packet, sizeof(packet));
 			icmp++;
-		}
-
+		} 
 		ip++; 
 	} else if(eth->ether_type == htons(0x0806)) {
 		//ARP
+		++arp;
+		//++arp;
+		arpheader = (struct arphdr *)(packet+14);
+	 	printf("\n");
+        printf("ARP/RARP Frame\n");
+  		printf("   |-Hardware type: %d\n",(unsigned int)(arpheader->htype)); 
+  		printf("   |-Protocol type: 0x%04X\n", ntohs(arpheader->ptype));  
+  		printf("   |-Length of hardware adress: %d\n", ((unsigned int)arpheader->hlen))*4; 
+		printf("   |-Length of protocol adress: %d\n", ((unsigned int)arpheader->plen))*4;
+		printf("   |-Operation: %s\n", (ntohs(arpheader->oper) == ARP_REQUEST)? "ARP Request" : "ARP Reply");             
 		
-		//...
-		arp++;
+		printf("   |-Sender's hardware adress: ");
+		for(int i=0; i<6;i++)
+        	printf("%02X:", arpheader->sha[i]); 
+		printf("\n");
+		
+		printf("   |-Sender's protocol adress: ");  //TODO ---------------
+		for(int i=0; i<4;i++)
+        	printf("%d.", arpheader->spa[i]); 
+		printf("\n");
+
+		printf("   |-Target hardware adress: "); 
+		for(int i=0; i<6;i++)
+        	printf("%02X:", arpheader->tha[i]);   
+		printf("\n");
+
+		printf("   |-Target protocol adress: ");    //TODO ---------------
+		for(int i=0; i<4;i++)
+        	printf("%d.", arpheader->tpa[i]);
+		printf("\n");
+		//..., 
+	} else { //
+		//----------- aqui passa ipv6
 	}
 	fflush(stdout);
 }
@@ -211,7 +264,7 @@ void print_usage()
 {
 	printf("\nxnoop -i <interface> [options] [filter]\n");
 	printf("interface: interface name of each package will be read\n");
-	//printf("options:\n   -c n\n   -n\n   -v\n   -V\n");
+	printf("options:\n   -c n\n   -n\n   -v\n   -V\n"); //MARK: Melhorar
 
 	exit(1);
 }
@@ -231,9 +284,12 @@ int main(int argc, char** argv) {
 	if (strcmp(argv[1], "-i"))
 		print_usage();	
 
-	// if (strcmp(argc == 3) {
-
-	// }
+	if (argc > 3) {
+		if(!(strcmp(argv[4],"-n")) && !(strcmp(argv[4],"-v")) && !(strcmp(argv[4],"-V"))  && !(strcmp(argv[4],"-c"))){
+			print_usage();
+		}
+		
+	}
 	
 	saddr_len = sizeof(saddr);
 	sockfd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));  
@@ -263,8 +319,7 @@ int main(int argc, char** argv) {
 		}
 		doProcess(packet_buffer, n);
 		
-		if (signal(SIGINT, treat_sign) == SIG_ERR) 
-          	printf("\nNao captura SIGINT\n"); 
+		signal(SIGINT, treat_sign); 
 	}
 
 	free(packet_buffer);
