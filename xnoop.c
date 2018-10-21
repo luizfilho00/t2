@@ -18,7 +18,6 @@
 #define ARP_REQUEST 1   /* ARP Request             */ 
 #define ARP_REPLY 2     /* ARP Reply               */ 
 
-
 #define MAX_PACKET_SIZE 65536
 #define MIN_PACKET_SIZE 64
 
@@ -68,7 +67,6 @@ void print_eth_address(char *s, unsigned char *eth_addr)
 	       eth_addr[3], eth_addr[4], eth_addr[5]);
 }
 
-
 /**
 * Imprime pacote UDP
 */
@@ -117,8 +115,6 @@ void print_icmp(unsigned char* packet, int size){
     //printf("   |-Sequence : %d\n",ntohs(icmph->sequence));
     printf("\n");
 }
-
-
 
 /**
 * Imprime pacote TCP
@@ -226,34 +222,31 @@ void doProcess(unsigned char* packet, int len) {
 		arpheader = (struct arphdr *)(packet+14);
 	 	printf("\n");
         printf("ARP/RARP Frame\n");
-  		printf("   |-Hardware type: %d\n",(unsigned int)(arpheader->htype)); 
+  		printf("   |-Hardware type: %d\n",ntohs(arpheader->htype)); 
   		printf("   |-Protocol type: 0x%04X\n", ntohs(arpheader->ptype));  
   		printf("   |-Length of hardware adress: %d\n", ((unsigned int)arpheader->hlen))*4; 
 		printf("   |-Length of protocol adress: %d\n", ((unsigned int)arpheader->plen))*4;
 		printf("   |-Operation: %s\n", (ntohs(arpheader->oper) == ARP_REQUEST)? "ARP Request" : "ARP Reply");             
 		
 		printf("   |-Sender's hardware adress: ");
-		for(int i=0; i<6;i++)
+		for(int i=0; i<5;i++)
         	printf("%02X:", arpheader->sha[i]); 
+		printf ("%02x\n", arpheader->sha[5]);
 		printf("\n");
 		
-		printf("   |-Sender's protocol adress: ");  //TODO ---------------
-		for(int i=0; i<4;i++)
-        	printf("%d.", arpheader->spa[i]); 
-		printf("\n");
-
+		printf("   |-Sender's protocol adress: %u.%u.%u.%u\n",arpheader->spa[0], arpheader->spa[1], arpheader->spa[2], arpheader->spa[3]);  
+	
 		printf("   |-Target hardware adress: "); 
-		for(int i=0; i<6;i++)
-        	printf("%02X:", arpheader->tha[i]);   
+		for(int i=0; i<5;i++)
+        	printf("%02X:", arpheader->tha[i]);
+		printf("%02X:", arpheader->tha[5]);   
 		printf("\n");
 
-		printf("   |-Target protocol adress: ");    //TODO ---------------
-		for(int i=0; i<4;i++)
-        	printf("%d.", arpheader->tpa[i]);
-		printf("\n");
+		printf("   |-Target protocol adress: %u.%u.%u.%u\n", arpheader->tpa[0], arpheader->tpa[1], arpheader->tpa[2], arpheader->tpa[3]);   
 		//..., 
 	} else { //
 		//----------- aqui passa ipv6
+		// arp++; 
 	}
 	fflush(stdout);
 }
@@ -264,7 +257,7 @@ void print_usage()
 {
 	printf("\nxnoop -i <interface> [options] [filter]\n");
 	printf("interface: interface name of each package will be read\n");
-	printf("options:\n   -c n\n   -n\n   -v\n   -V\n"); //MARK: Melhorar
+	printf("options:\n   -c n\n   -n\n   -v\n   -V\n"); //MARK: -Melhorar
 
 	exit(1);
 }
